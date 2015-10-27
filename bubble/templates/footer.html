@@ -1,0 +1,12 @@
+{% load flatpages %}
+<div class="container" >
+    <div class="text-center flatpages-flatpage credit">
+        {% get_flatpages as flatpages %}
+        {% for flatpage in flatpages %}
+            <a href="{{ flatpage.url }}" style="padding-right: 20px;">{{ flatpage.title }}</a>
+        {% endfor %}
+        <p class="text-center text-muted" style="padding-top: 20px"> &copy; {% now 'Y' %} {{ DEFAULT_TITLE }}</p>
+    </div>
+
+
+</div>

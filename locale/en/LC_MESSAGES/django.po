@@ -1,0 +1,500 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2015-10-22 16:27+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: auths/forms.py:11
+msgid "пароль"
+msgstr "password"
+
+#: auths/forms.py:12
+msgid "повторіть пароль"
+msgstr "password confirmation"
+
+#: auths/forms.py:26
+msgid "Паролі не співпадають"
+msgstr "Passwords do not match"
+
+#: auths/forms.py:31 users/forms.py:47
+msgid "Користувач з таким email вже зареєстрований"
+msgstr "Email has already been registered"
+
+#: auths/forms.py:56
+msgid "Неправильно введений email або пароль"
+msgstr "Either your login email or password is incorrect, please try again"
+
+#: auths/forms.py:60 users/models.py:91
+msgid "email"
+msgstr ""
+
+#: auths/forms.py:72
+msgid "Користувач з таким email не зареєстрований"
+msgstr "Sorry, that user doesn't exist"
+
+#: auths/templates/auths/login.html:7
+#: auths/templates/auths/password_recovery.html:37
+#: auths/templates/auths/registration.html:42
+msgid "авторизація"
+msgstr "authorization"
+
+#: auths/templates/auths/login.html:24
+msgid "ввійти"
+msgstr "log in"
+
+#: auths/templates/auths/login.html:30
+#: auths/templates/auths/registration.html:19
+msgid "реєстрація"
+msgstr "registration"
+
+#: auths/templates/auths/login.html:31
+msgid "забули пароль?"
+msgstr "forgot password?"
+
+#: auths/templates/auths/password_recovery.html:7
+msgid "відновлення пароля"
+msgstr "password recovery"
+
+#: auths/templates/auths/password_recovery.html:10
+#, python-format
+msgid ""
+"Для підтвердження відновлення пароля перейдіть по лінку, який висланий Вам "
+"на email(%(e)s)"
+msgstr ""
+"Please, check the email(%(e)s) we sent you and click the link to confirm "
+"your password "
+
+#: auths/templates/auths/password_recovery.html:31
+msgid "відновити пароль"
+msgstr "recover password"
+
+#: auths/templates/auths/password_recovery_confirm.html:7
+msgid "новий пароль"
+msgstr "new password"
+
+#: auths/templates/auths/password_recovery_confirm.html:24
+#: users/templates/users/settings.html:56
+#: users/templates/users/settings.html:72
+msgid "змінити пароль"
+msgstr "change password"
+
+#: auths/templates/auths/registration.html:9
+#, python-format
+msgid "%(u)s, дякуємо за реєстрацію!"
+msgstr "%(u)s, Thank you for Registering!"
+
+#: auths/templates/auths/registration.html:14
+#, python-format
+msgid ""
+"Для підтвердження реєстрації перейдіть по лінку, який висланий Вам на "
+"email(%(e)s)"
+msgstr ""
+"Please, check the email(%(e)s) we sent you and click the link to confirm "
+"your email "
+
+#: auths/templates/auths/registration.html:36
+msgid "зареєструватись"
+msgstr "sign up"
+
+#: auths/views.py:63
+msgid "Ваша реєстрація успішно підтверджена. Можете увійти :)"
+msgstr "Your registration is successfully confirmed. You can log :)"
+
+#: bubble/templates/bubble/tags/paginator.html:9
+msgid "нові"
+msgstr "new"
+
+#: bubble/templates/bubble/tags/paginator.html:16
+msgid "старі"
+msgstr "old"
+
+#: bubble/templates/head.html:20 news/templates/news/news.html:6
+msgid "новини"
+msgstr "news"
+
+#: bubble/templates/head.html:21
+msgid "мій профіль"
+msgstr "my profile"
+
+#: bubble/templates/head.html:22 users/models.py:108
+#: users/templates/users/friends_base.html:10
+msgid "друзі"
+msgstr "friends"
+
+#: bubble/templates/head.html:23 dialogs/templates/dialog/dialog.html:8
+msgid "повідомлення"
+msgstr "messages"
+
+#: bubble/templates/head.html:24
+msgid "пошук людей"
+msgstr "people search"
+
+#: bubble/templates/head.html:50
+msgid "вихід"
+msgstr "log out"
+
+#: dialogs/forms.py:12
+msgid "напишіть повідомлення"
+msgstr "write the message"
+
+#: dialogs/templates/dialog/dialog.html:26
+msgid "діалог з"
+msgstr "chat with"
+
+#: dialogs/templates/dialog/dialog.html:39
+msgid "відправити"
+msgstr "send"
+
+#: dialogs/templates/dialog/dialog.html:95
+msgid "У Вас ще немає розпочатих діалогів"
+msgstr "You don't have any chats"
+
+#: news/models.py:24
+msgid "повідомлення на стіні"
+msgstr "message on the wall"
+
+#: news/models.py:25
+msgid "створення дружніх зв'язків"
+msgstr "establishment of friendly relations"
+
+#: news/models.py:26
+msgid "розрив дружніх зв'язків"
+msgstr "rupture of friendly relations"
+
+#: news/templates/news/display_break_friends.html:5
+#: news/templates/news/display_make_friends.html:5
+msgid "та"
+msgstr "and"
+
+#: news/templates/news/display_break_friends.html:10
+msgid "перестали дружити"
+msgstr "ceased to be friends"
+
+#: news/templates/news/display_make_friends.html:10
+msgid "стали друзями"
+msgstr "began friends"
+
+#: news/templates/news/display_wall_post.html:8
+msgid "написав на своїй стіні"
+msgstr "wrote on his wall"
+
+#: news/templates/news/display_wall_post.html:11
+msgid "написала на своїй стіні"
+msgstr "wrote on her wall"
+
+#: news/templates/news/display_wall_post.html:16
+msgid "написав на стіні"
+msgstr "wrote on wall"
+
+#: news/templates/news/display_wall_post.html:19
+msgid "написала на стіні"
+msgstr "wrote on wall"
+
+#: users/forms.py:18
+msgid "Введіть дату у форматі РРРР-ММ-ДД"
+msgstr "Enter the date in the format YYYY-MM-DD"
+
+#: users/forms.py:35
+msgid "новий email"
+msgstr "new email"
+
+#: users/forms.py:36
+msgid "поточний пароль"
+msgstr "current password"
+
+#: users/forms.py:53
+msgid "Невірно введений пароль"
+msgstr "Incorrect password"
+
+#: users/forms.py:68
+msgid "напишіть на стіні..."
+msgstr "write on the wall..."
+
+#: users/forms.py:80
+msgid "ім'я, прізвище"
+msgstr "first name, last name"
+
+#: users/forms.py:81 users/models.py:102 users/templates/users/profile.html:41
+msgid "стать"
+msgstr "gender"
+
+#: users/forms.py:82
+msgid "всі"
+msgstr "all"
+
+#: users/forms.py:84
+msgid "рік народження з"
+msgstr "year of birth from"
+
+#: users/forms.py:85
+msgid "від"
+msgstr "from"
+
+#: users/forms.py:86
+msgid "рік народження до"
+msgstr "year of birth to"
+
+#: users/forms.py:87
+msgid "до"
+msgstr "to"
+
+#: users/forms.py:88 users/models.py:104 users/templates/users/profile.html:53
+msgid "місто"
+msgstr "city"
+
+#: users/forms.py:89 users/models.py:105 users/templates/users/profile.html:59
+msgid "робота"
+msgstr "job"
+
+#: users/forms.py:90
+msgid "про себе"
+msgstr "about me"
+
+#: users/forms.py:91 users/models.py:107 users/templates/users/profile.html:71
+msgid "інтереси"
+msgstr "interests"
+
+#: users/models.py:48 users/models.py:164
+msgid "Ви не можете себе добавити в друзі"
+msgstr "You cannot add yourself as friend"
+
+#: users/models.py:87
+msgid "---"
+msgstr ""
+
+#: users/models.py:88
+msgid "чоловік"
+msgstr "male"
+
+#: users/models.py:89
+msgid "жінка"
+msgstr "female"
+
+#: users/models.py:92
+msgid "ім'я"
+msgstr "first name"
+
+#: users/models.py:93
+msgid "прізвище"
+msgstr "last name"
+
+#: users/models.py:94
+msgid "аватарка"
+msgstr "photo"
+
+#: users/models.py:95
+msgid "staff status"
+msgstr ""
+
+#: users/models.py:96
+msgid "Designates whether the user can log into this admin site."
+msgstr ""
+
+#: users/models.py:97
+msgid "active"
+msgstr ""
+
+#: users/models.py:98
+msgid ""
+"Designates whether this user should be treated as active. Unselect this "
+"instead of deleting accounts."
+msgstr ""
+
+#: users/models.py:100
+msgid "date joined"
+msgstr ""
+
+#: users/models.py:101
+msgid "confirmed registration"
+msgstr ""
+
+#: users/models.py:103
+msgid "день народження"
+msgstr "birthday"
+
+#: users/models.py:106 users/templates/users/profile.html:65
+msgid "про мене"
+msgstr "about me"
+
+#: users/models.py:136
+msgid "Підтвердіть реєстрацію | bubble"
+msgstr "Confirmed registration | bubble"
+
+#: users/models.py:137
+msgid "Для підтвердження реєстрації перейдіть по лінку: {}"
+msgstr "To confirm registration click on the link: {}"
+
+#: users/models.py:151
+msgid "Підтвердіть відновлення пароля | bubble"
+msgstr "Password confirm | bubble"
+
+#: users/models.py:152
+msgid "Для підтвердження перейдіть по лінку: {}"
+msgstr "To confirm click on the link: {}"
+
+#: users/models.py:166
+msgid "Ви вже є в друзях"
+msgstr "You are already friends"
+
+#: users/models.py:168
+msgid "Заявка вже оформлена і чекає на розгляд"
+msgstr "Request successfully sent and pending"
+
+#: users/models.py:178
+msgid "Заявок не існує"
+msgstr ""
+
+#: users/models.py:197
+msgid "власник стіни"
+msgstr ""
+
+#: users/models.py:198
+msgid "автор"
+msgstr "author"
+
+#: users/models.py:199
+msgid "контент"
+msgstr "content"
+
+#: users/models.py:200
+msgid "дата створення"
+msgstr "date of creation"
+
+#: users/templates/users/friends_base.html:13
+msgid "заявки у друзі"
+msgstr "requests to friends"
+
+#: users/templates/users/friends_base.html:16
+#: users/templates/users/friends_outcome.html:6
+msgid "вихідні заявки"
+msgstr "outcoming requests"
+
+#: users/templates/users/friends_base.html:22
+msgid "усі друзі"
+msgstr "all friends"
+
+#: users/templates/users/friends_base.html:42
+#: users/templates/users/profile.html:19
+msgid "видалити з друзів"
+msgstr "remove from friends"
+
+#: users/templates/users/friends_base.html:47
+#: users/templates/users/profile.html:32
+msgid "написати повідомлення"
+msgstr "send a message"
+
+#: users/templates/users/friends_income.html:5
+msgid "вхідні заявки"
+msgstr "incoming requests"
+
+#: users/templates/users/friends_income.html:23
+msgid "добавити"
+msgstr "add"
+
+#: users/templates/users/friends_income.html:32
+#: users/templates/users/friends_outcome.html:25
+msgid "відхилити"
+msgstr "reject"
+
+#: users/templates/users/profile.html:10 users/templates/users/settings.html:9
+msgid "налаштування"
+msgstr "settings"
+
+#: users/templates/users/profile.html:28
+msgid "добавити в друзі"
+msgstr "add to friends"
+
+#: users/templates/users/profile.html:47
+msgid "дата народження"
+msgstr "date of birth"
+
+#: users/templates/users/profile.html:94
+msgid "опублікувати"
+msgstr "publish"
+
+#: users/templates/users/search.html:28
+msgid "рік народження"
+msgstr "year of birth"
+
+#: users/templates/users/search.html:72
+msgid "шукати"
+msgstr "search"
+
+#: users/templates/users/search.html:91
+#, python-format
+msgid "%(age)s років"
+msgstr "%(age)s years"
+
+#: users/templates/users/settings.html:16
+msgid "видалити"
+msgstr "remove"
+
+#: users/templates/users/settings.html:20
+msgid "Ви ще не загрузили аватарки :("
+msgstr "You haven't uploaded any photos yet"
+
+#: users/templates/users/settings.html:43
+msgid "зберегти"
+msgstr "save"
+
+#: users/templates/users/settings.html:85
+#: users/templates/users/settings.html:109
+msgid "змінити email"
+msgstr "change email"
+
+#: users/templates/users/settings.html:90
+msgid "поточний email"
+msgstr "current email"
+
+#: users/views.py:57
+msgid "Повідомлення успішно опубліковано"
+msgstr "Post published successfully"
+
+#: users/views.py:90
+msgid "Дані успішно змінені та збережені"
+msgstr "Your data successfully modified and saved"
+
+#: users/views.py:96
+msgid "Пароль успішно змінений"
+msgstr "Password successfully changed"
+
+#: users/views.py:100
+msgid "Email успішно змінений та збережений"
+msgstr "Email successfully modified and saved"
+
+#: users/views.py:196
+msgid "Заявка успішно відправлена і очікує розгляду"
+msgstr "Request successfully sent and pending"
+
+#: users/views.py:198
+msgid "Користувач успішно добавлений"
+msgstr "User successfully added"
+
+#: users/views.py:211
+msgid "Заявка успішно підтверджена"
+msgstr "Request successfully confirmed"
+
+#: users/views.py:218
+msgid "Заявка успішно відхилена"
+msgstr "Request successfully rejected"
+
+#: users/views.py:225
+msgid "Заявка успішно відмінена"
+msgstr "Request canceled successfully"
+
+#: users/views.py:232
+msgid "Користувач успішно видалений"
+msgstr "User successfully deleted"

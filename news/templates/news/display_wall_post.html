@@ -1,0 +1,34 @@
+{% extends 'news/display_base.html' %}
+{% load i18n %}
+
+{% block between %}
+    {% if item.user == item.target %}
+        {% if item.user.gender == 1 %}
+            <span style="display: inline-block; margin: 0 10px; font-weight: bold;" class="text-info">
+                {% trans 'написав на своїй стіні' %}</span>
+        {% elif item.user.gender == 2 %}
+            <span style="display: inline-block; margin: 0 10px; font-weight: bold;" class="text-info">
+                {% trans 'написала на своїй стіні' %}</span>
+        {% endif %}
+    {% else %}
+        {% if item.user.gender == 1 %}
+            <span style="display: inline-block; margin: 0 10px; font-weight: bold;" class="text-info">
+                {% trans 'написав на стіні' %}</span>
+        {% elif item.user.gender == 2 %}
+            <span style="display: inline-block; margin: 0 10px; font-weight: bold;" class="text-info">
+                {% trans 'написала на стіні' %}</span>
+        {% endif %}
+    {% endif %}
+{% endblock %}
+
+{% block target %}
+    {% if item.user != item.target %}
+        {{ block.super }}
+    {% endif %}
+{% endblock %}
+
+{% block content %}
+    <div class="panel-body">
+        {{ item.news_object.content|linebreaksbr }}
+    </div>
+{% endblock %}

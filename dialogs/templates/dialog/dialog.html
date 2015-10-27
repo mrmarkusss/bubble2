@@ -1,0 +1,102 @@
+{% extends 'base.html' %}
+
+{% load i18n users bubble dialogs humanize %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-md-4">
+            <h1 style="margin-top: 0px" class="text-center">{% trans 'повідомлення'|capfirst %}</h1>
+            {% for dialog in dialogs %}
+                {% get_opponent dialog as dialog_opponent %}
+                <div style="padding: 5px;{% if dialog_opponent == opponent %}
+                    background: #375a7f;border-radius: 4px;{% endif %}">
+                    <a href="{% url 'user_profile' dialog_opponent.pk %}" style="text-decoration: none; padding-right: 10px;">
+                        <img class="img-responsive myimg" style="display: inline-block" width="60"
+                             src="{{ dialog_opponent|get_avatar }}" alt="">
+                    </a>
+                    <a href="{% url 'messages' dialog_opponent.pk %}"
+                       style="font-size: 1.5em">{{ dialog_opponent.get_full_name }}</a>
+                </div>
+            {% endfor %}
+            {% show_paginator dialogs 'dialogs-page' %}
+        </div>
+        <div class="col-md-8">
+            {% if opponent %}
+                <h4 class="text-center">
+                    {% trans 'діалог з'|capfirst %}
+                    <img class="img-responsive myimg" style="display: inline-block; margin: 0 5px 0 10px;"
+                         width="30" src="{{ opponent|get_avatar }}" alt="">
+                    <a href="{% url 'user_profile' opponent.pk %}">{{ opponent.get_full_name }}</a>
+                </h4>
+                <form action="" method="post" class="form-horizontal">
+                    {% csrf_token %}
+                    {% show_form_field_errors form.text.errors %}
+                    <div class="form-group{% if form.text.errors %} has-error{% endif %}">
+                        <div class="col-md-9">
+                            {{ form.text }}
+                        </div>
+                        <div class="col-md-3">
+                            <input type="submit" class="btn btn-primary btn-lg" value="{% trans 'відправити'|capfirst %}">
+                        </div>
+                    </div>
+                </form>
+                {% for message in dialog_messages %}
+                    <div style="margin-top: 20px">
+                        {% if message.sender.pk == user.pk %}
+                            <div class="row">
+                                <div class="col-md-10">
+                                    <div class="panel panel-default">
+                                        <div class="panel-heading">
+                                            <a href="{% url 'user_profile' message.sender.pk %}">
+                                                {{ message.sender.get_full_name }}</a>
+                                            <span title="{{ message.created }}" style="margin-left: 25px;
+                                                font-size: 0.7em;" class="text-muted">
+                                                {{ message.created|naturaltime }}
+                                            </span>
+                                        </div>
+                                        <div class="panel-body">
+                                            {{ message.text|linebreaksbr }}
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-2">
+                                    <img class="img-responsive myimg" width="80" src="{{ message.sender|get_avatar }}" alt="">
+                                </div>
+                            </div>
+                        {% else %}
+                            <div class="row">
+                                <div class="col-md-2">
+                                    <img class="img-responsive myimg" width="80" src="{{ message.sender|get_avatar }}" alt="">
+                                </div>
+                                <div class="col-md-10">
+                                    <div class="panel panel-warning">
+                                        <div class="panel-heading">
+                                            <a href="{% url 'user_profile' message.sender.pk %}" style="color: #003671">
+                                                {{ message.sender.get_full_name }}</a>
+                                            <span title="{{ message.created }}"
+                                                  style="margin-left: 25px; font-size: 0.7em; color: #606060">
+                                                {{ message.created|naturaltime }}
+                                            </span>
+                                        </div>
+                                        <div class="panel-body">
+                                            {{ message.text|linebreaksbr }}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        {% endif %}
+                    </div>
+                {% endfor %}
+                {% show_paginator dialog_messages 'messages-page' %}
+            {% else %}
+                <div class="jumbotron vertical-center" style="background: none">
+                    <div class="container text-center">
+                        <h3>
+                            {% blocktrans %}У Вас ще немає розпочатих діалогів{% endblocktrans %}
+                        </h3>
+                    </div>
+                </div>
+            {% endif %}
+        </div>
+    </div>
+{% endblock %}

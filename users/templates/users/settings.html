@@ -1,0 +1,114 @@
+{% extends 'base.html' %}
+{% load i18n bubble %}
+
+{% block content %}
+    <form class="form-horizontal" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <input type="hidden" name="action" value="profile">
+        <div class="row">
+            <h2 class="text-center" style="margin-bottom: 35px;">{% trans 'налаштування'|capfirst %}</h2>
+            <div class="col-md-offset-1 col-md-3">
+                {% if profile_settings_form.instance.avatar %}
+                    <img class="img-responsive myimg" src="{{ profile_settings_form.instance.avatar.url }}">
+                    <div class="checkbox" style="margin: 10px 0;">
+                        <label>
+                            <input type="checkbox" id="profile-avatar-clear_id" name="profile-avatar-clear">
+                            {% trans 'видалити'|capfirst %}
+                        </label>
+                    </div>
+                {% else %}
+                    <p>{% trans 'Ви ще не загрузили аватарки :(' %}</p>
+                {% endif %}
+                <div>
+                    <input type="file" id="id_profile-avatar" name="profile-avatar">                    
+                </div>
+            </div>
+            <div class="col-md-8">
+                {% for field in profile_settings_form %}
+                    {% if field.name != 'avatar' %}
+                        {% show_form_field_errors field.errors 'col-md-offset-3 col-md-8' %}
+                            <div class="form-group{% if field.errors %} has-error{% endif %}">
+                                <label for="{{ field.id_for_label }}" class="control-label col-md-3">
+                                    {{ field.label|capfirst }}
+                                </label>
+                                <div class="col-md-8">
+                                    {{ field }}
+                                </div>
+                            </div>
+                    {% endif %}
+                {% endfor %}
+                <div class="form-group">
+                    <div class="col-md-offset-3 col-md-6">
+                        <input type="submit" class="btn btn-success btn-lg" value="{% trans 'зберегти'|capfirst %}">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+    <form class="form-horizontal" method="post">
+        {% csrf_token %}
+        <input type="hidden" name="action" value="password">
+        <div class="row">
+            <div class="col-md-offset-4 col-md-8">
+                <div class="row">
+                    <div class="col-md-offset-4 col-md-6">
+                        <h2>{% trans 'змінити пароль'|capfirst %}</h2>
+                    </div>
+                </div>
+                {% for field in user_change_password %}
+                    {% show_form_field_errors field.errors 'col-md-offset-3 col-md-8' %}
+                        <div class="form-group{% if field.errors %} has-error{% endif %}">
+                            <label for="{{ field.id_for_label }}" class="control-label col-md-3">
+                                {{ field.label|capfirst }}
+                            </label>
+                            <div class="col-md-8">
+                                {{ field }}
+                            </div>
+                        </div>
+                {% endfor %}
+                <div class="form-group">
+                    <div class="col-md-offset-3 col-md-6">
+                        <input type="submit" class="btn btn-success btn-lg" value="{% trans 'змінити пароль'|capfirst %}">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+       <form class="form-horizontal" method="post">
+        {% csrf_token %}
+        <input type="hidden" name="action" value="email">
+        <div class="row">
+            <div class="col-md-offset-4 col-md-8">
+                <div class="row">
+                    <div class="col-md-offset-4 col-md-6">
+                        <h2>{% trans 'змінити email'|capfirst %}</h2>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-md-3">
+                        {% trans 'поточний email'|capfirst %}:
+                    </label>
+                    <div class="col-md-8">
+                        <p class="form-control-static">{{ user_change_email.user.email }}</p>
+                    </div>
+                </div>
+                {% for field in user_change_email %}
+                    {% show_form_field_errors field.errors 'col-md-offset-3 col-md-8' %}
+                        <div class="form-group{% if field.errors %} has-error{% endif %}">
+                            <label for="{{ field.id_for_label }}" class="control-label col-md-3">
+                                {{ field.label|capfirst }}
+                            </label>
+                            <div class="col-md-8">
+                                {{ field }}
+                            </div>
+                        </div>
+                {% endfor %}
+                <div class="form-group">
+                    <div class="col-md-offset-3 col-md-6">
+                        <input type="submit" class="btn btn-success btn-lg" value="{% trans 'змінити email'|capfirst %}">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+{% endblock %}

@@ -1,0 +1,11 @@
+{% extends 'news/display_base.html' %}
+{% load i18n %}
+
+{% block between %}
+    <span style="display: inline-block; margin: 0 10px;">{% trans 'та' %}</span>
+{% endblock %}
+
+{% block after %}
+    <span style="display: inline-block; margin: 0 10px; color: #d62c1a; font-size: 16px; font-weight: bold">
+        {% trans 'перестали дружити' %}</span>
+{% endblock %}

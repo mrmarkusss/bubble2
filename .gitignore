@@ -1,0 +1,16 @@
+*.pyc
+__pycache__
+*.mo
+*.pot
+
+#IDE
+.idea
+
+#db
+db.sqlite3
+
+#MDIA
+media/
+!media/avatars/.gitkeep
+
+

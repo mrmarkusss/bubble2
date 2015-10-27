@@ -1,0 +1,58 @@
+{% load static i18n %}
+<nav class="navbar navbar-default">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-1">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                            data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="{% url 'main' %}">Bubble</a>
+                </div>
+            </div>
+            <div class="col-md-7">
+                <ul class="nav navbar-nav">
+                    {% if user.is_authenticated %}
+                        <li><a href="{% url 'news' %}">{% trans 'новини'|capfirst %}</a></li>
+                        <li><a href="{% url 'user_profile' user.pk %}">{% trans 'мій профіль'|capfirst %}</a></li>
+                        <li><a href="{% url 'friends' %}">{% trans 'друзі'|capfirst %}</a></li>
+                        <li><a href="{% url 'messages' %}">{% trans 'повідомлення'|capfirst %}</a></li>
+                        <li><a href="{% url 'search' %}">{% trans 'пошук людей'|capfirst %}</a></li>
+                    {% endif %}
+                </ul>
+            </div>
+            <div class="col-md-2">
+                <ul class="nav navbar-nav navbar-right">
+                    <form action="{% url 'set_language' %}" method="post">
+                        <input type="hidden" name="next" value="{{ redirect_to }}">
+                        <input type="hidden" id="set_lang_code" name="language" value="">
+                    </form>
+                    {% get_language_info_list for LANGUAGES as languages %}
+                    {% for language in languages %}
+                        <li>
+                            <a href="#" title="{{ language.name_local }}"
+                               {% if language.code == LANGUAGE_CODE %}style="font-weight: bold;
+                               padding-left: 5px; padding-right: 5px"{% else %}style="padding-left: 5px; padding-right: 5px"{% endif %}
+                               onclick="$('#set_lang_code').val('{{ language.code }}').closest('form').submit();
+                                       return false"> {{ language.code }}</a>
+                        </li>
+                    {% endfor %}
+                </ul>
+
+            </div>
+            {% if user.is_authenticated %}
+                <div class="col-md-2">
+                    <ul class="nav navbar-nav navbar-right">
+                        <li><a href="{% url 'logout' %}">{% trans 'вихід'|capfirst %}</a></li>
+                    </ul>
+                </div>
+            {% endif %}
+            <!-- /.navbar-collapse -->
+        </div>
+    </div>
+    <!-- /.container-fluid -->
+</nav>

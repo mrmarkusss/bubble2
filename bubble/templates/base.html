@@ -1,0 +1,35 @@
+{% load static bubble %}<!DOCTYPE html>
+<html lang="{{ LANGUAGE_CODE }}">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="shortcut icon" href="{% static 'bubble/img/favicon.png' %}" type="image/png"/>
+    <title>{% block title %}{{ DEFAULT_TITLE }}{% endblock %}</title>
+    {% block css %}
+{#        <link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap.min.css' %}"/>#}
+{#        <link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap-theme.min.css' %}"/>#}
+
+        <link rel="stylesheet" href="{% static 'bubble/css/boo.css' %}">
+        <link rel="stylesheet" href="{% static 'bubble/css/style.css' %}">
+    {% endblock %}
+</head>
+<body>
+    <div id="wrap">
+        <div class="container">
+            {% block head %}
+                {% include 'head.html' %}
+            {% endblock %}
+            {% show_messages %}
+            {% block content %} {% endblock %}
+        </div>
+    </div>
+    <footer id="footer">
+        {% include 'footer.html' %}
+    </footer>
+    {% block js %}
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+        <script src="{% static 'bootstrap/js/bootstrap.min.js' %}"></script>
+    {% endblock %}
+</body>
+</html>

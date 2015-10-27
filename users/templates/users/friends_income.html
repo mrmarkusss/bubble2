@@ -1,0 +1,42 @@
+{% extends 'users/friends_base.html' %}
+{% load i18n users bubble %}
+
+{% block friends %}
+    <h1 style="margin-top: 0px">{% trans 'вхідні заявки'|capfirst %}</h1>
+
+    {% for item in items %}
+        <div class="row" style="margin-top: 25px;">
+            <div class="col-md-2">
+                <a href="{% url 'user_profile' item.from_user.pk %}"><img class="img-responsive myimg" src="{{ item.from_user|get_avatar }}" alt=""></a>
+            </div>
+            <div class="col-md-10">
+                <h3>
+                    <a href="{% url 'user_profile' item.from_user.pk %}">{{ item.from_user.get_full_name }}</a>
+                </h3>
+                <div class="row">
+                    <div class="col-md-2">
+                        <form action="{% url 'user_friendship_api' %}" method="post">
+                            {% csrf_token %}
+                            <input type="hidden" name="action" value="approve">
+                            <input type="hidden" name="user_id" value="{{ item.from_user.pk }}">
+                            <input type="hidden" name="next"  value="{{ request.get_full_path }}">
+                            <input type="submit" class="btn btn-success" value="{% trans 'добавити'|capfirst %}">
+                        </form>
+                    </div>
+                    <div class="col-md-2">
+                        <form action="{% url 'user_friendship_api' %}" method="post">
+                            {% csrf_token %}
+                            <input type="hidden" name="action" value="reject">
+                            <input type="hidden" name="user_id" value="{{ item.from_user.pk }}">
+                            <input type="hidden" name="next"  value="{{ request.get_full_path }}">
+                            <input type="submit" class="btn btn-danger" value="{% trans 'відхилити'|capfirst %}">
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+
+    {% show_paginator items %}
+
+{% endblock %}

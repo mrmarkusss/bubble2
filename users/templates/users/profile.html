@@ -1,0 +1,125 @@
+{% extends 'base.html' %}
+{% load static i18n users humanize bubble %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-md-3">
+            <img class="img-responsive myimg" src="{{ profile_user|get_avatar }}" alt="avatar">
+            {% if profile_user == user %}
+                <a class="btn btn-default btn-block" style="margin-top: 20px;" href="{% url 'settings' %}">
+                    {% trans 'налаштування'|capfirst %}</a>
+            {% else %}
+                {% if is_my_friend %}
+                    <form action="{% url 'user_friendship_api' %}" method="post">
+                        {% csrf_token %}
+                        <input type="hidden" name="action" value="delete_from_friends">
+                        <input type="hidden" name="user_id" value="{{ profile_user.pk }}">
+                        <input type="hidden" name="next"  value="{{ request.get_full_path }}">
+                        <input type="submit" class="btn btn-danger btn-block" style="margin-top: 20px;"
+                               value="{% trans 'видалити з друзів'|capfirst %}">
+                    </form>
+                {% else %}
+                    <form action="{% url 'user_friendship_api' %}" method="post">
+                        {% csrf_token %}
+                        <input type="hidden" name="action" value="add_to_friends">
+                        <input type="hidden" name="user_id" value="{{ profile_user.pk }}">
+                        <input type="hidden" name="next"  value="{{ request.get_full_path }}">
+                        <input type="submit" class="btn btn-success btn-block" style="margin-top: 20px;"
+                               value="{% trans 'добавити в друзі'|capfirst %}">
+                    </form>
+                {% endif %}
+                <a class="btn btn-default btn-block" style="margin-top: 20px;"
+                   href="{% url 'messages' profile_user.pk %}">{% trans 'написати повідомлення'|capfirst %}</a>
+            {% endif %}
+        </div>
+        <div class="col-md-offset-1 col-md-8">
+            <h1 style="padding: 0; margin: 0 0 15px 0;">{{ profile_user.get_full_name }}</h1>
+            <table class="table borderless">
+                <tbody>
+                    {% if profile_user.gender %}
+                        <tr>
+                            <td>{% trans 'стать'|capfirst %}:</td>
+                            <td>{{ profile_user.get_gender_display }}</td>
+                        </tr>
+                    {% endif %}
+                    {% if profile_user.birth_date %}
+                        <tr>
+                            <td>{% trans 'дата народження'|capfirst %}:</td>
+                            <td>{{ profile_user.birth_date }}</td>
+                        </tr>
+                    {% endif %}
+                    {% if profile_user.city %}
+                        <tr>
+                            <td>{% trans 'місто'|capfirst %}:</td>
+                            <td>{{ profile_user.city }}</td>
+                        </tr>
+                    {% endif %}
+                    {% if profile_user.job %}
+                        <tr>
+                            <td>{% trans 'робота'|capfirst %}:</td>
+                            <td>{{ profile_user.job }}</td>
+                        </tr>
+                    {% endif %}
+                    {% if profile_user.about_me %}
+                        <tr>
+                            <td>{% trans 'про мене'|capfirst %}:</td>
+                            <td>{{ profile_user.about_me|linebreaksbr }}</td>
+                        </tr>
+                    {% endif %}
+                    {% if profile_user.interests %}
+                        <tr>
+                            <td>{% trans 'інтереси'|capfirst %}:</td>
+                            <td>{{ profile_user.interests|linebreaksbr }}</td>
+                        </tr>
+                    {% endif %}
+                </tbody>
+            </table>            
+        </div>
+    </div>
+    <div class="row" style="margin-bottom: 50px">
+        <div class="col-md-offset-4 col-md-8">
+            <div class="col-md-12" style="margin: 20px 0;">
+                <form class="form-horizontal" method="post">
+                    <div class="row">
+                        <div class="col-md-12">
+                            {% csrf_token %}
+                            {% show_form_field_errors wall_post_form.content.errors 'mypadding' %}
+                            <div class="form-group{% if wall_post_form.content.errors %} has-error{% endif %}">
+                                {{ wall_post_form.content }}
+                            </div>
+                        </div>
+                        <div class="col-md-offset-8 col-md-4">
+                            <div class="form-group">
+                                <input type="submit" class=" btn btn-primary btn-block"
+                                       value="{% trans 'опублікувати'|capfirst %}">
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            {% for post in posts_on_wall %}
+                <div class="row">
+                    <div class="col-md-2">
+                        <a href="{% url 'user_profile' post.author_id %}">
+                            <img class="img-responsive myimg" src="{{ post.author|get_avatar }}" alt="">
+                        </a>
+                    </div>
+                    <div class="col-md-10">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <a href="{% url 'user_profile' post.author_id %}">{{ post.author.get_full_name }}</a>
+                                <span title="{{ post.created }}" style="margin-left: 25px; font-size: 0.7em"
+                                      class="text-muted">{{ post.created|naturaltime }}
+                                </span>
+                            </div>
+                            <div class="panel-body">
+                                {{ post.content|linebreaksbr }}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+            {% show_paginator posts_on_wall %}
+        </div>
+    </div>
+{% endblock %}

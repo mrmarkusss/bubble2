@@ -1,0 +1,35 @@
+{% load users humanize %}
+<div>
+    <div>
+        {% block title %}
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <div class="row">
+                        <div class="col-md-9">
+                            {% block user %}
+                                <img class="img-responsive myimg" width="30" style="display: inline-block; margin-right: 5px;"
+                                     src="{{ item.user|get_avatar }}" alt="">
+                                <a href="{% url 'user_profile' item.user.pk %}">{{ item.user.get_full_name }}</a>
+                            {% endblock %}
+                            {% block between %}{% endblock %}
+                            {% block target %}
+                                <img class="img-responsive myimg" width="30" style="display: inline-block; margin-right: 5px;"
+                                     src="{{ item.target|get_avatar }}" alt="">
+                                <a href="{% url 'user_profile' item.target.pk %}">{{ item.target.get_full_name }}</a>
+                            {% endblock %}
+                            {% block after %}{% endblock %}
+                        </div>
+                        <div class="col-md-3">
+                            {% block time %}
+                                <span title="{{ item.created }}" class="text-muted" style="margin-left: 20px">
+                                    {{ item.created|naturaltime }}
+                                </span>
+                            {% endblock %}
+                        </div>
+                    </div>
+                </div>
+                {% block content %}{% endblock %}
+            </div>
+        {% endblock %}
+    </div>
+</div>

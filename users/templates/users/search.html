@@ -1,0 +1,104 @@
+{% extends 'base.html' %}
+
+{% load i18n users bubble %}
+
+{% block content %}
+
+        <div class="row" style="margin-top: 50px">
+            <div class="col-md-4">
+                 <form class="form-horizontal">
+                     <div class="form-group">
+                         <label for="{{ form.fname_and_lname.id_for_label }}" class="col-md-5 control-label">
+                             {{ form.fname_and_lname.label|capfirst }}
+                         </label>
+                         <div class="col-md-7">
+                             {{ form.fname_and_lname }}
+                         </div>
+                     </div>
+                     <div class="form-group">
+                         <label for="{{ form.gender.id_for_label }}" class="col-md-5 control-label">
+                             {{ form.gender.label|capfirst }}
+                         </label>
+                         <div class="col-md-7">
+                             {{ form.gender }}
+                         </div>
+                     </div>
+                     <div class="form-group">
+                         <label for="{{ form.from_date.id_for_label }}" class="col-md-5 control-label">
+                             {% trans 'рік народження'|capfirst %}
+                         </label>
+                         <div class="col-md-7">
+                             <div class="row">
+                                 <div class="col-md-6">{{ form.from_date }}</div>
+                                 <div class="col-md-6">{{ form.to_date }}</div>
+                             </div>
+                         </div>
+                     </div>
+                     <div class="form-group">
+                         <label for="{{ form.city.id_for_label }}" class="col-md-5 control-label">
+                             {{ form.city.label|capfirst }}
+                         </label>
+                         <div class="col-md-7">
+                             {{ form.city }}
+                         </div>
+                     </div>
+                     <div class="form-group">
+                         <label for="{{ form.job.id_for_label }}" class="col-md-5 control-label">
+                             {{ form.job.label|capfirst }}
+                         </label>
+                         <div class="col-md-7">
+                             {{ form.job }}
+                         </div>
+                     </div>
+                     <div class="form-group">
+                         <label for="{{ form.about_me.id_for_label }}" class="col-md-5 control-label">
+                             {{ form.about_me.label|capfirst }}
+                         </label>
+                         <div class="col-md-7">
+                             {{ form.about_me }}
+                         </div>
+                     </div>
+                     <div class="form-group">
+                         <label for="{{ form.interests.id_for_label }}" class="col-md-5 control-label">
+                             {{ form.interests.label|capfirst }}
+                         </label>
+                         <div class="col-md-7">
+                             {{ form.interests }}
+                         </div>
+                     </div>
+
+                     <div class="row">
+                         <div class="col-md-offset-3 col-md-6">                             
+                             <input type="submit" class="btn btn-success btn-block" value="{% trans 'шукати'|capfirst %}">
+                         </div>
+                     </div>
+                </form>
+            </div>
+            <div class="col-md-8">
+                {% for item in items %}
+                    <div class="row" style="margin-bottom: 20px;">
+                        <div class="col-md-2">
+                            <a href="{% url 'user_profile' item.pk %}">
+                                <img style="margin-top: 0px;" class="img-responsive myimg" src="{{ item|get_avatar }}" alt="">
+                            </a>
+                        </div>
+                        <div class="col-md-10">
+                            <h3 style="margin-top: 0">
+                                <a href="{% url 'user_profile' item.pk %}">{{ item.get_full_name }}</a>
+                            </h3>
+                            {% with age=item.get_age %}
+                                {% if age %}
+                                    <p>{% blocktrans %}{{ age }} років{% endblocktrans %}</p>
+                                {% endif %}
+                            {% endwith %}
+                            {% if item.city %}
+                                <p>{{ item.city }}</p>
+                            {% endif %}
+                        </div>
+                    </div>
+                {% endfor %}
+                {% show_paginator items %}
+            </div>
+        </div>
+
+{% endblock %}

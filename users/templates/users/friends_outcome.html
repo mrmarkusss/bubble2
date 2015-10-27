@@ -1,0 +1,33 @@
+{% extends 'users/friends_base.html' %}
+
+{% load i18n users bubble %}
+
+{% block friends %}
+    <h1 style="margin-top: 0px">{% trans 'вихідні заявки'|capfirst %}</h1>
+
+    {% for item in items %}
+        <div class="row">
+            <div class="col-md-2">
+                <a href="{% url 'user_profile' item.to_user.pk %}">
+                    <img class="img-responsive myimg" src="{{ item.to_user|get_avatar }}" alt="">
+                </a>
+            </div>
+            <div class="col-md-10">
+                <h3>
+                    <a href="{% url 'user_profile' item.to_user.pk %}">{{ item.to_user.get_full_name }}</a>
+                </h3>
+                <p>
+                <form action="{% url 'user_friendship_api' %}" method="post">
+                    {% csrf_token %}
+                    <input type="hidden" name="action" value="cancel_outcome">
+                    <input type="hidden" name="user_id" value="{{ item.to_user.pk }}">
+                    <input type="hidden" name="next"  value="{{ request.get_full_path }}">
+                    <input type="submit" class="btn btn-danger" value="{% trans 'відхилити'|capfirst %}">
+                </form>
+                </p>
+            </div>
+        </div>
+    {% endfor %}
+
+    {% show_paginator items %}
+{% endblock %}
